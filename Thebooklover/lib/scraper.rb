@@ -13,9 +13,6 @@ attr_accessor :description, :url, :name, :price
     @book = book
   end
 
-  def initialize(time)
-    @time = time
-  end
 
     def url=(book)
      @book = scrape_storyone
@@ -54,12 +51,20 @@ def self.all
         book = self.new
         book.name = element.css("h3 a").text
         book.price = element.css(".price_color").text
-      #movie.plot = doc.seach "<a href="../../../its-only-the-himalayas_981/index.html" title="It's Only the Himalayas">It's Only the Himalayas</a>"
+        book.url = element.css('a').last.attributes.values.first.value.gsub('../','')
       #movie.url = "https://www.imdb.com/title/tt0078346/"
 
           book
        end
      end
+
+
+
+def self.scrape_storyone
+
+
+   doc = Nokogiri::HTML(open('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html'))
+
 
   #def self.scrape_imdb
   #  doc = Nokogiri::HTML(open("https://www.imdb.com/find?q=superman&s=tt&exact=true&ref_=fn_al_tt_ex"))
@@ -78,3 +83,4 @@ def self.all
 
   The_Keeper::Book.scrape_storyone
 end
+
