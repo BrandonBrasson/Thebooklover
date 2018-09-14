@@ -15,7 +15,7 @@ attr_accessor :description, :url, :name, :price
 
 
     def url=(book)
-     @book = scrape_storyone
+     @book = scrape_storyoneindexone
     end
 
 
@@ -40,47 +40,49 @@ attr_accessor :description, :url, :name, :price
 
 def self.all
 
-    @@all
+@@all = []
+
   end
 
-  def self.scrape_storyone
+  def self.scrape_storyindexone
     doc = Nokogiri::HTML(open('http://books.toscrape.com/catalogue/category/books/travel_2/index.html'))
-    list_doc = doc.css("ol.row li") #get a that will give you the data in the form of Nokogiri objects
+    list_doc = doc.css("ol") #get a selector that will give you the data in the form of Nokogiri objects
     list_doc.collect.with_index(1) do |element, i|
-      binding.pry
         book = self.new
         book.name = element.css("h3 a").text
         book.price = element.css(".price_color").text
         book.url = element.css('a').last.attributes.values.first.value.gsub('../','')
-      #movie.url = "https://www.imdb.com/title/tt0078346/"
 
           book
        end
      end
 
+     def self.scrape_storyindexone
+       doc = Nokogiri::HTML(open('http://books.toscrape.com/catalogue/category/books/travel_2/index.html'))
+       list_doc = doc.css("ol") #get a selector that will give you the data in the form of Nokogiri objects
+       list_doc.collect.with_index() do |element, i|
+         #binding.pry
+           book = self.new
+           book.name = element.css('a').attribute.values.first.value.gsub('../','')
+           book.price = element.css(".price_color").text
+           book.url = element.css('').last.attributes.values.first.value.gsub('../','')
+
+             book
+          end
+        end
 
 
-def self.scrape_storyone
 
 
-   doc = Nokogiri::HTML(open('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html'))
 
 
-  #def self.scrape_imdb
-  #  doc = Nokogiri::HTML(open("https://www.imdb.com/find?q=superman&s=tt&exact=true&ref_=fn_al_tt_ex"))
-  #  list_doc = doc.css("div.findSection")
-  #  list_doc.each.with_index do |element, i|
-  #    movie = self.new
-  #    movie.name = list_doc.css(".result_text a")[i].text
-    #binding.pry
-      #movie.plot = doc.<span class="mw-headline" id="Plot">Plot</span>
-      #movie.url = "https://www.imdb.com/title/tt0078346/fullcredits?ref_=tt_cl_sm#cast"
-#      movie.superhero = true
 
-#      movie
-#    end
-#  end
 
-  The_Keeper::Book.scrape_storyone
+
+
+
+
+  #The_Keeper::Book.scrape_storyoneindexone
 end
+
 
