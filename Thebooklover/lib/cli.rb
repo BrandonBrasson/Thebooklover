@@ -2,7 +2,7 @@ class The_Keeper::CLI
 
 
    def call
-     The_Keeper::Book.scrape_storyone
+     The_Keeper::Book.scrape_storyindexone
     list_books
     menu
     goodbye
@@ -13,14 +13,13 @@ class The_Keeper::CLI
         puts "THE KEEPER OF TIME"
         @book = The_Keeper::Book.all
         @book.each.with_index(1) do |book, i|
-         puts "#{i}. #{book.name} - #{book.time} - #{book.url}"
+         puts "#{i}. #{book.description} - #{book.url} - #{book.name} - #{book.price}"
      end
    end
 
 
 
       def menu
-        binding.pry
         input = nil
         while input != "exit"
           puts "Superman is a 1978 superhero film directed by Richard Donner and based on the DC Comics:"
@@ -28,7 +27,7 @@ class The_Keeper::CLI
 
       if input.to_i > 0
         the_book = @book[input.to_i-1]
-        puts "#{the_book.name} - #{the_book.time} - #{the_book.url}"
+        puts "#{the_book.description} - #{the_book.url} - #{the_book.name} - #{the_book.price}"
       elsif input == "list"
         list_books
       else
@@ -41,3 +40,4 @@ end
     puts "goodbye have a superday"
   end
 end
+
