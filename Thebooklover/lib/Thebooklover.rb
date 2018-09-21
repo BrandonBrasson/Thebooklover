@@ -1,4 +1,5 @@
-
+require 'HTTparty'
+require 'byebug'
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
