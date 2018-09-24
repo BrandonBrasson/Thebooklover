@@ -1,53 +1,49 @@
-require 'httparty'
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
-require "byebug"
+
 
 class The_Keeper::Book
-attr_accessor :url, :name, :price
+attr_accessor   :url, :name, :price
   @@all = []
 
 
 
-  #def self.all
-      # Scrape scrape_storyindexone and storyindextwo and then return deals based on that data
-    #  self.scrape_book
-    #end
+  def self.all
+      # Scrape woot and meh and then return deals based on that data
+      self.scrape_book
+    end
 
-    #def self.scrape_book
-    #  book = []
+    def self.scrape_book
+      book = []
 
-    #  book << self.scrape_storyindexone
-      #book << self.scrape_storyindextwo
+      book << self.scrape_storyindexone
+      book << self.scrape_storyindextwo
 
-      #book
-    #end
+      book
+    end
 
-
-
-
-#def self.all
-
-#  end
-
-
-
-  def self.scrape_storyindexone
-    url ='http://books.toscrape.com/catalogue/category/books/travel_2/index.html'
-    unparsed_page = HTTparty.get(url)
-    parsed_page = Nokogiri::HTML(unparsed_page)
-    book = Array.new
-    book_listing = parsed_page.css('div.page_inner')
-  binding.pry
-    per_page = book_listing.count#11
-    total = parsed_page.css('div.page_inner')
-    book_listing.each.with_index(1) do |book_listing|
+    def self.scrape_storyindexone
+      doc = Nokogiri::HTML(open("https://woot.com"))
+  
+      book = self.new
+      book.name = doc.search("h2.main-title").text.strip
+      book.price = doc.search("#todays-deal span.price").text.strip
+      book.url = doc.search("a.Onkyo 7.2-Channel 4K Network A/V Receiver").first.attr("href").strip
 
 
-    byebug
+      book
+    end
 
+    def self.scrape_storyindextwo
+      doc = Nokogiri::HTML(open("https://meh.com"))
+
+      book = self.new
+      book.name = doc.search("section.features h2").text.strip
+      book.price = doc.search("button.buy-button").text.gsub("Buy it.", "").strip
+      book.url = "https://meh.com"
+
+
+     book
+    end
   end
-
-
-   end
