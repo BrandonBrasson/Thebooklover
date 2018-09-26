@@ -24,15 +24,15 @@ attr_accessor   :url, :name, :price
     end
 
     def self.scrape_storyindexone
-      doc = Nokogiri::HTML(open("https://woot.com"))
-  
-      book = self.new
-      book.name = doc.search("h2.main-title").text.strip
-      book.price = doc.search("#todays-deal span.price").text.strip
-      book.url = doc.search("a.Onkyo 7.2-Channel 4K Network A/V Receiver").first.attr("href").strip
+      doc = Nokogiri::HTML(open("http://books.toscrape.com"))
+
+      book = doc.search("li.col-xs-6")
+      book.map do |book|
+      book_name = book.css("h3 a").text
+      book_price = book.css("p.price_color").text
 
 
-      book
+     end
     end
 
     def self.scrape_storyindextwo
