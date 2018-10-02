@@ -13,7 +13,7 @@ class The_Keeper::CLI
         puts "THE KEEPER OF TIME"
         @book = The_Keeper::Book.all
         @book.each.with_index(1) do |book, i|
-         puts "#{i}.#{book.name} - #{book.price} - #{book.url}"
+         puts "#{i}.#{book.name} - #{book.price}" #{}"- #{book.url}"
      end
    end
 
@@ -22,7 +22,7 @@ class The_Keeper::CLI
       def menu
         input = nil
         while input != "exit"
-          puts "b"
+          puts "list of data"
           input = gets.strip.downcase
 
       if input.to_i > 0

@@ -5,23 +5,27 @@ require 'pry'
 
 class The_Keeper::Book
 attr_accessor   :url, :name, :price
+
   @@all = []
 
-
+  def initialize
+    @@all << self #self == Book instance
+  end
 
   def self.all
       # Scrape storyindexone and storyindextwo and then return deals based on that data
-      self.scrape_book
-    end
+    @@all
+    #binding.pry
+  end
 
-    def self.scrape_book
-      book = []
+    #def self.scrape_book
+    #  book = []
+#
+    #  book << self.scrape_storyindexone
+#   #   book << self.scrape_storyindextwo
 
-      book << self.scrape_storyindexone
-      #book << self.scrape_storyindextwo
-
-      book
-    end
+    #  book
+    #end
 
     def self.scrape_storyindexone
 
@@ -32,14 +36,15 @@ attr_accessor   :url, :name, :price
 
 
 
-      doc = Nokogiri::HTML(open("http://books.toscrape.com"))
-
-      book = self.new
-      book.name = doc.search(" h3 a").text.strip
-      book.price = doc.search("p.price_color").text.gsub("Buy it.", "").strip
-      book.url = ("http://books.toscrape.com/catalogue/category/books/travel_2/index.html")
-
-
-     book
+      doc = Nokogiri::HTML(open("http://books.toscrape.com/catalogue/category/books/travel_2/index.html"))
+      list_doc = doc.css("li.col-xs-6")
+      list_doc.each do |element|
+        #binding.pry
+        book = self.new
+        book.name = element.css("h3 a").text
+        book.price = element.css("p.price_color").text
+        # book.url = ("http://books.toscrape.com/catalogue/category/books/travel_2/index.html")
+      end
+     #book
     end
   end
