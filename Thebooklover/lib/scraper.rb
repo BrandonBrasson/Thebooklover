@@ -10,7 +10,7 @@ attr_accessor   :url, :name, :price
 
 
   def self.all
-      # Scrape woot and meh and then return deals based on that data
+      # Scrape storyindexone and storyindextwo and then return deals based on that data
       self.scrape_book
     end
 
@@ -18,30 +18,26 @@ attr_accessor   :url, :name, :price
       book = []
 
       book << self.scrape_storyindexone
-      book << self.scrape_storyindextwo
+      #book << self.scrape_storyindextwo
 
       book
     end
 
     def self.scrape_storyindexone
+
+    #  book = doc.search("li.col-xs-6")
+      #book.map do |book|
+      #book_name = doc.search("h3 a").text
+    #  book_price = doc.search("p.price_color").text
+
+
+
       doc = Nokogiri::HTML(open("http://books.toscrape.com"))
 
-      book = doc.search("li.col-xs-6")
-      book.map do |book|
-      book_name = book.css("h3 a").text
-      book_price = book.css("p.price_color").text
-
-
-     end
-    end
-
-    def self.scrape_storyindextwo
-      doc = Nokogiri::HTML(open("https://meh.com"))
-
       book = self.new
-      book.name = doc.search("section.features h2").text.strip
-      book.price = doc.search("button.buy-button").text.gsub("Buy it.", "").strip
-      book.url = "https://meh.com"
+      book.name = doc.search(" h3 a").text.strip
+      book.price = doc.search("p.price_color").text.gsub("Buy it.", "").strip
+      book.url = ("http://books.toscrape.com/catalogue/category/books/travel_2/index.html")
 
 
      book
