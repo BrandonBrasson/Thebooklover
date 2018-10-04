@@ -2,6 +2,7 @@ class The_Keeper::CLI
 
 
    def call
+     binding.pry
      The_Keeper::Book.scrape_storyindexone
     list_storybook
     menu
@@ -13,7 +14,7 @@ class The_Keeper::CLI
         puts "THE KEEPER OF TIME"
         @book = The_Keeper::Book.all
         @book.each.with_index(1) do |book, i|
-         puts "#{i}.#{book.name} - #{book.price}" #{}"- #{book.url}"
+         puts "#{i}.#{book.name} "
      end
    end
 
