@@ -2,18 +2,18 @@ class The_Keeper::CLI
 
 
    def call
-     The_Keeper::Book.scrape_storyindexone
+    The_Keeper::Book.scrape_storyindexone
     list_storybook
     menu
     goodbye
   end
 
-      def list_storybook
-        puts "THE KEEPER OF TIME"
-        @book = The_Keeper::Book.all
-        @book.each.with_index(1) do |book, i|
-         puts "#{i}.#{book.name}"
-     end
+  def list_storybook
+      puts "THE KEEPER OF TIME"
+      @book = The_Keeper::Book.all
+      @book.each.with_index(1) do |book, i|
+      puts "#{i}.#{book.name}"
+    end
    end
 
 
@@ -21,8 +21,8 @@ class The_Keeper::CLI
     def menu
       input = nil
     while input != "exit"
-        puts "list of books"
-        input = gets.strip.downcase
+      puts "list of books"
+      input = gets.strip.downcase
 
     if input.to_i > 0
       the_book = @book[input.to_i-1]
