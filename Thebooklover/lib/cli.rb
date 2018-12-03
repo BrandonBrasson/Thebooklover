@@ -29,8 +29,10 @@ class The_Keeper::CLI
       puts " #{the_book.name} - #{the_book.price} - #{the_book.url}"
     elsif input == "list"
       list_storybook
+    elsif input == "exit"
+      nil
     else
-      puts "Not sure what you want, type list or exit."
+    puts "Not sure what you want, type list or exit."
     end
   end
 end
