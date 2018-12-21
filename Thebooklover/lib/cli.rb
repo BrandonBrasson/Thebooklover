@@ -10,7 +10,7 @@ class The_Keeper::CLI
   end
 
   def list_storybook
-      puts "THE KEEPER OF TIME"
+      puts "Type any number 1 to 11, type list to return to menu or exit"
       book = The_Keeper::Book.all
       book.each.with_index(1) do |book, i|
       puts "#{i}.#{book.name}"
@@ -22,7 +22,7 @@ class The_Keeper::CLI
     def menu
       input = nil
     while input != "exit"
-      puts "list of books"
+      puts " type list of books to return or type exit"
       input = gets.strip.downcase
 
     if input.to_i > 0
@@ -33,12 +33,12 @@ class The_Keeper::CLI
     elsif input == "exit"
       nil
     else
-    puts "Not sure type in 1 to 10, type list or exit."
+    puts "are you lost type?"
     end
   end
 end
 
   def goodbye
-    puts "goodbye"
+    puts "goodbye friend"
   end
 end
