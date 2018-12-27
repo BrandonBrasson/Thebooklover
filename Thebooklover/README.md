@@ -1,9 +1,5 @@
 # Thebooklover
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Thebooklover`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
+This Ruby Gem works by scraping web data and using the cli to display the data in a list format. This Gem list by making a small test app that assist with displaying data that shows eleven books names, prices and the url.
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -21,9 +17,8 @@ Or install it yourself as:
     $ gem install Thebooklover
 
 ## Usage
-
-TODO: Write usage instructions here
-
+./bin/The_Keeper it will direct you to the list of books. There are eleven books in total you can choose from book genres of travel from any number 1 through 11.
+ The books list also show the name, price and url of each book in collection.
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
