@@ -6,7 +6,7 @@ class The_Keeper::CLI
     The_Keeper::Scraper.scrape_storyindexone
     list_storybook
     menu
-    goodbye
+   goodbye
   end
 
   def list_storybook
@@ -26,8 +26,7 @@ class The_Keeper::CLI
       input = gets.strip.downcase
 
     if input.to_i > 0
-      the_book = The_Keeper::Book.all[input.to_i-1]
-      puts " #{the_book.name} - #{the_book.price} - #{the_book.url}"
+      book = The_Keeper::Book.all[input.to_i-1]
     elsif input == "list"
       list_storybook
     elsif input == "exit"
