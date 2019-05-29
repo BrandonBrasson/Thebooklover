@@ -6,14 +6,14 @@ class The_Keeper::CLI
     The_Keeper::Scraper.scrape_storyindexone
     list_storybook
     menu
-   goodbye
+    goodbye
   end
 
   def list_storybook
       puts "Type any number 1 to 11, type list to return to menu or exit"
       book = The_Keeper::Book.all
-      book.each.with_index(1) do |book, i|
-      puts "#{i}.#{book.name}"
+      book.each.with_index(1) do |book|
+      puts "#{book.name}"
     end
    end
 
@@ -21,12 +21,13 @@ class The_Keeper::CLI
 
     def menu
       input = nil
-    while input != "exit"
+    while
+      input != "exit"
       puts " type list of books to return or type exit"
       input = gets.strip.downcase
-
-    if input.to_i > 0
+    if input.to_i > 0 && input.to_i <= The_Keeper::Book.all.length
       book = The_Keeper::Book.all[input.to_i-1]
+      puts book.name
     elsif input == "list"
       list_storybook
     elsif input == "exit"
