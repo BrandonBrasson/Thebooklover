@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Brandon Brasson'"]
   spec.email         = ["'rocksong622@gmail.com'"]
 
-  spec.summary       = %q{eat thhtg yuig uyugi}
-  spec.description   = %q{to long  }
+  spec.summary       = %q{This is a test app displaying books for educational purposes }
+  spec.description   = %q{./bin/The_Keeper it will direct you to the list of books. There are eleven books in total you can choose from book genres of travel  }
   spec.homepage      = "https://github.com/BrandonBrasson/superman/blob/master/imdb/bin/superman"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
