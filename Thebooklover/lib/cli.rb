@@ -27,7 +27,9 @@ class The_Keeper::CLI
       input = gets.strip.downcase
     if input.to_i > 0 && input.to_i <= The_Keeper::Book.all.length
       book = The_Keeper::Book.all[input.to_i-1]
-      puts book.name
+      puts book.name 
+      puts book.price 
+      puts book.url
     elsif input == "list"
       list_storybook
     elsif input == "exit"
